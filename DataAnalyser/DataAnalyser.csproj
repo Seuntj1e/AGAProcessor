@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Document.Processor" Version="23.2.6" />
+    <PackageReference Include="DevExpress.ExpressApp.PivotGrid.Win" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Win.Grid" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Win.Navigation" Version="23.2.6" />
+    <PackageReference Include="DevExpress.Xpo" Version="23.2.6" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.5" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.8" />
+    <PackageReference Include="SQLitePCLRaw.bundle_sqlite3" Version="2.1.8" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="2.1.8" />
+  </ItemGroup>
+
+</Project>
