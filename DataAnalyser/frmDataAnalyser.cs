@@ -10,14 +10,14 @@ using DevExpress.XtraRichEdit.Import.Doc;
 
 namespace DataAnalyser
 {
-    public partial class Form1 : Form
+    public partial class frmDataAnalyser : Form
     {
         public UnitOfWork WorkUnit { get; set; }
         public XPCollection<Models.Region> Regions { get; set; }
 
         Models.Region FocusedRegion { get; set; }
         University focusedUniversity { get; set; }
-        public Form1()
+        public frmDataAnalyser()
         {
             string conn = SQLiteConnectionProvider.GetConnectionString(@"data.db");
             //SQLitePCL.raw.SetProvider();
@@ -78,13 +78,13 @@ namespace DataAnalyser
                         string hash = getHashSha256(email);//this should get hashed
                                                            //find entrant using hash
                                                            //create entrant if not found
-                        
+
                         University varsity = gridView2.GetFocusedRow() as University;
                         Entrant entrant = WorkUnit.FindObject<Entrant>(CriteriaOperator.Parse($"{nameof(entrant.Hash)}=? and EntrantUniversity.Name=?", hash, varsity.Name));
                         if (entrant == null)
                         {
                             DateTime datestring = sheet[$"A{row}"].Value.DateTimeValue;
-                            
+
                             entrant = new Entrant(WorkUnit)
                             {
                                 EntrantUniversity = varsity,
@@ -99,6 +99,10 @@ namespace DataAnalyser
                         for (int j = 2; j < columns.Count; j++)
                         {
                             column = sheet[$"{chars[j]}{row}"].Value.TextValue;
+                            if (string.IsNullOrWhiteSpace(column))
+                                continue;
+                            column = column.ReplaceLineEndings(",");
+                            column = TrimWhiteSpace(column);                            
                             string[] values = column.Split(',');
                             int[] scores = new int[] { 6, 5, 4, 3, 3, 3, 3, 2, 2, 1 };
                             int count = 0;
@@ -114,7 +118,7 @@ namespace DataAnalyser
                                     Category = columns[j],
                                     Entrant = entrant,
                                     StringValue = valuestring,
-                                    Score = scores[count++]
+                                    Score = scores[count>= scores.Length-1? scores.Length - 1 : count++]
 
                                 };
                             }
@@ -142,20 +146,12 @@ namespace DataAnalyser
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            FocusedRegion = gridView1.GetFocusedRow() as Models.Region;
-            if (FocusedRegion != null)
-            {
-                gridControl2.DataSource = FocusedRegion.Universities;
-            }
+           
         }
 
         private void gridView2_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            focusedUniversity = gridView2.GetFocusedRow() as University;
-            if (focusedUniversity != null)
-            {
-                gridControl3.DataSource = focusedUniversity.Entrants;
-            }
+
         }
 
         private void gridView2_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -181,7 +177,7 @@ namespace DataAnalyser
                     values.Where(v => v.Category == x);
                     values.Criteria = CriteriaOperator.Parse("Category=?", x.Oid);
                     values.Reload();
-                    var list = values.GroupBy(x => new { x.StringValue, x.Entrant.EntrantUniversity }).Select(g=>new { g.Key, score = g.Sum(z=>z.Score) }).ToList();
+                    var list = values.GroupBy(x => new { x.StringValue, x.Entrant.EntrantUniversity }).Select(g => new { g.Key, score = g.Sum(z => z.Score) }).ToList();
                     int cols = 1;
                     int rows = 2;
                     Sheet[$"A{1}"].SetValue("Region");
@@ -199,6 +195,81 @@ namespace DataAnalyser
                 }
                 book.SaveDocument(sfd.FileName);
             }
+        }
+
+        private void gridView2_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
+        {
+            focusedUniversity = e.Row as University;
+            SetGrid2();
+
+        }
+
+        void SetGrid2()
+        {
+            if (focusedUniversity != null && focusedUniversity.Oid > 0)
+            {
+                gridControl3.DataSource = focusedUniversity.Entrants;
+                simpleButton1.Enabled = true;
+                gridControl3.Enabled = true;
+            }
+            else
+            {
+                gridControl3.DataSource = null;
+                simpleButton1.Enabled = false;
+                gridControl3.Enabled = false;
+            }
+        }
+
+        private void gridView1_FocusedRowObjectChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowObjectChangedEventArgs e)
+        {
+            FocusedRegion = e.Row as Models.Region;
+            if (FocusedRegion != null && FocusedRegion.Oid>0)
+            {
+                gridControl2.DataSource = FocusedRegion.Universities;
+                gridControl2.Enabled = true;
+
+            }
+            else
+            {
+                gridControl2.DataSource = null;
+                gridControl2.Enabled=false;
+                focusedUniversity = null;
+                SetGrid2();
+            }
+        }
+
+        string TrimWhiteSpace(string Value)
+        {
+            StringBuilder sbOut = new StringBuilder();
+            if (!string.IsNullOrEmpty(Value))
+            {
+                bool IsWhiteSpace = false;
+                bool comma = false;
+                for (int i = 0; i < Value.Length; i++)
+                {
+                    if (char.IsWhiteSpace(Value[i])) //Comparion with WhiteSpace
+                    {
+                        if (!IsWhiteSpace) //Comparison with previous Char
+                        {
+                            sbOut.Append(Value[i]);
+                            IsWhiteSpace = true;
+                            comma = false;
+                        }
+                        else
+                        {
+                            sbOut.Append(",");
+                            comma = true;
+                        }
+                    }
+                    else
+                    {
+                        IsWhiteSpace = false;
+                        sbOut.Append(Value[i]);
+                        comma = false;
+                    }
+                }
+            }
+            return sbOut.ToString();
         }
     }
 }

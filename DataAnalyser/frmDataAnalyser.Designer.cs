@@ -1,6 +1,6 @@
 ﻿namespace DataAnalyser
 {
-    partial class Form1
+    partial class frmDataAnalyser
     {
         /// <summary>
         ///  Required designer variable.
@@ -30,12 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding1 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
-            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding2 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
-            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding3 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
-            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding4 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
-            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding5 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
+            DevExpress.XtraCharts.XYDiagram xyDiagram3 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding11 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
+            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding12 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
+            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding13 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
+            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding14 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
+            DevExpress.XtraPivotGrid.DataSourceColumnBinding dataSourceColumnBinding15 = new DevExpress.XtraPivotGrid.DataSourceColumnBinding();
             gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -89,7 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
             layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)xyDiagram1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)xyDiagram3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pivotGridControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)xpCollection1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)unitOfWork1).BeginInit();
@@ -149,6 +149,7 @@
             // 
             // gridControl3
             // 
+            gridControl3.Enabled = false;
             gridLevelNode1.LevelTemplate = gridView5;
             gridLevelNode1.RelationName = "Values";
             gridControl3.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] { gridLevelNode1 });
@@ -205,21 +206,21 @@
             // chartControl1
             // 
             chartControl1.DataSource = pivotGridControl1;
-            xyDiagram1.AxisX.Title.Text = "Stimulus Value";
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.Title.Text = "Score";
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            chartControl1.Diagram = xyDiagram1;
+            xyDiagram3.AxisX.Title.Text = "Stimulus Value";
+            xyDiagram3.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram3.AxisY.Title.Text = "Score";
+            xyDiagram3.AxisY.VisibleInPanesSerializable = "-1";
+            chartControl1.Diagram = xyDiagram3;
             chartControl1.Legend.LegendID = -1;
             chartControl1.Legend.MaxHorizontalPercentage = 30D;
-            chartControl1.Location = new Point(24, 181);
+            chartControl1.Location = new Point(24, 299);
             chartControl1.Name = "chartControl1";
             chartControl1.SeriesDataMember = "Series";
             chartControl1.SeriesTemplate.ArgumentDataMember = "Arguments";
             chartControl1.SeriesTemplate.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
             chartControl1.SeriesTemplate.SeriesDataMember = "Series";
             chartControl1.SeriesTemplate.ValueDataMembersSerializable = "Values";
-            chartControl1.Size = new Size(752, 245);
+            chartControl1.Size = new Size(752, 127);
             chartControl1.TabIndex = 9;
             // 
             // pivotGridControl1
@@ -229,7 +230,7 @@
             pivotGridControl1.Location = new Point(24, 73);
             pivotGridControl1.Name = "pivotGridControl1";
             pivotGridControl1.OptionsData.DataProcessingEngine = DevExpress.XtraPivotGrid.PivotDataProcessingEngine.Optimized;
-            pivotGridControl1.Size = new Size(752, 94);
+            pivotGridControl1.Size = new Size(752, 212);
             pivotGridControl1.TabIndex = 8;
             // 
             // xpCollection1
@@ -244,8 +245,8 @@
             pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             pivotGridField1.AreaIndex = 1;
             pivotGridField1.Caption = "Value";
-            dataSourceColumnBinding1.ColumnName = "StringValue";
-            pivotGridField1.DataBinding = dataSourceColumnBinding1;
+            dataSourceColumnBinding11.ColumnName = "StringValue";
+            pivotGridField1.DataBinding = dataSourceColumnBinding11;
             pivotGridField1.Name = "pivotGridField1";
             pivotGridField1.SortMode = DevExpress.XtraPivotGrid.PivotSortMode.Value;
             pivotGridField1.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
@@ -255,8 +256,8 @@
             pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
             pivotGridField2.AreaIndex = 0;
             pivotGridField2.Caption = "Score";
-            dataSourceColumnBinding2.ColumnName = "Score";
-            pivotGridField2.DataBinding = dataSourceColumnBinding2;
+            dataSourceColumnBinding12.ColumnName = "Score";
+            pivotGridField2.DataBinding = dataSourceColumnBinding12;
             pivotGridField2.Name = "pivotGridField2";
             // 
             // pivotGridField3
@@ -264,16 +265,16 @@
             pivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
             pivotGridField3.AreaIndex = 0;
             pivotGridField3.Caption = "Stimulus";
-            dataSourceColumnBinding3.ColumnName = "Category.Name";
-            pivotGridField3.DataBinding = dataSourceColumnBinding3;
+            dataSourceColumnBinding13.ColumnName = "Category.Name";
+            pivotGridField3.DataBinding = dataSourceColumnBinding13;
             pivotGridField3.Name = "pivotGridField3";
             // 
             // pivotGridField4
             // 
             pivotGridField4.AreaIndex = 0;
             pivotGridField4.Caption = "University";
-            dataSourceColumnBinding4.ColumnName = "Entrant.EntrantUniversity.Name";
-            pivotGridField4.DataBinding = dataSourceColumnBinding4;
+            dataSourceColumnBinding14.ColumnName = "Entrant.EntrantUniversity.Name";
+            pivotGridField4.DataBinding = dataSourceColumnBinding14;
             pivotGridField4.Name = "pivotGridField4";
             pivotGridField4.SortBySummaryInfo.FieldName = "Entrant.EntrantUniversity.Name";
             // 
@@ -281,13 +282,14 @@
             // 
             pivotGridField5.AreaIndex = 1;
             pivotGridField5.Caption = "Region";
-            dataSourceColumnBinding5.ColumnName = "Entrant.EntrantUniversity.UniversityRegion.Name";
-            pivotGridField5.DataBinding = dataSourceColumnBinding5;
+            dataSourceColumnBinding15.ColumnName = "Entrant.EntrantUniversity.UniversityRegion.Name";
+            pivotGridField5.DataBinding = dataSourceColumnBinding15;
             pivotGridField5.Name = "pivotGridField5";
             pivotGridField5.SortBySummaryInfo.FieldName = "Entrant.EntrantUniversity.UniversityRegion.Name";
             // 
             // simpleButton1
             // 
+            simpleButton1.Enabled = false;
             simpleButton1.Location = new Point(681, 80);
             simpleButton1.Name = "simpleButton1";
             simpleButton1.Size = new Size(83, 22);
@@ -298,6 +300,7 @@
             // 
             // gridControl2
             // 
+            gridControl2.Enabled = false;
             gridControl2.Location = new Point(164, 80);
             gridControl2.MainView = gridView2;
             gridControl2.Name = "gridControl2";
@@ -316,6 +319,7 @@
             gridView2.OptionsView.ShowDetailButtons = false;
             gridView2.OptionsView.ShowGroupPanel = false;
             gridView2.FocusedRowChanged += gridView2_FocusedRowChanged;
+            gridView2.FocusedRowObjectChanged += gridView2_FocusedRowObjectChanged;
             gridView2.RowUpdated += gridView2_RowUpdated;
             // 
             // gridColumn1
@@ -346,6 +350,7 @@
             gridView1.OptionsView.ShowDetailButtons = false;
             gridView1.OptionsView.ShowGroupPanel = false;
             gridView1.FocusedRowChanged += gridView1_FocusedRowChanged;
+            gridView1.FocusedRowObjectChanged += gridView1_FocusedRowObjectChanged;
             gridView1.RowUpdated += gridView2_RowUpdated;
             // 
             // grcRegionName
@@ -379,7 +384,7 @@
             // 
             tabbedControlGroup1.Location = new Point(0, 0);
             tabbedControlGroup1.Name = "tabbedControlGroup1";
-            tabbedControlGroup1.SelectedTabPage = layoutControlGroup1;
+            tabbedControlGroup1.SelectedTabPage = layoutControlGroup2;
             tabbedControlGroup1.Size = new Size(780, 430);
             tabbedControlGroup1.TabPages.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlGroup1, layoutControlGroup2 });
             // 
@@ -475,23 +480,23 @@
             layoutControlItem5.Control = pivotGridControl1;
             layoutControlItem5.Location = new Point(0, 26);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new Size(756, 98);
+            layoutControlItem5.Size = new Size(756, 216);
             layoutControlItem5.TextSize = new Size(0, 0);
             layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = chartControl1;
-            layoutControlItem6.Location = new Point(0, 134);
+            layoutControlItem6.Location = new Point(0, 252);
             layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new Size(756, 249);
+            layoutControlItem6.Size = new Size(756, 131);
             layoutControlItem6.TextSize = new Size(0, 0);
             layoutControlItem6.TextVisible = false;
             // 
             // splitterItem1
             // 
             splitterItem1.AllowHotTrack = true;
-            splitterItem1.Location = new Point(0, 124);
+            splitterItem1.Location = new Point(0, 242);
             splitterItem1.Name = "splitterItem1";
             splitterItem1.Size = new Size(756, 10);
             // 
@@ -531,21 +536,21 @@
             gridColumn3.Visible = true;
             gridColumn3.VisibleIndex = 1;
             // 
-            // Form1
+            // frmDataAnalyser
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(layoutControl1);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "frmDataAnalyser";
+            Text = "AGA Data Analyser";
             ((System.ComponentModel.ISupportInitialize)gridView5).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridControl3).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView3).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)xyDiagram1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)xyDiagram3).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pivotGridControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)xpCollection1).EndInit();
